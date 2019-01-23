@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name:"Pet",
+        name:"ImgComponent",
         props: {
             file_name: String
         }

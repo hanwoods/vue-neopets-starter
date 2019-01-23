@@ -2,12 +2,13 @@
    <div class="welcome_page">
     <h1>{{ header_msg }}</h1>
     <h2>{{ sub_msg }}</h2>
-    <Pet file_name="jubjub_pet"></Pet>
+    <!-- Note in v-for you need a key to bind to each element and we use v-bind to pass in the image.url -->
+    <ImgComponent v-for="image in images" v-bind:file_name="image.url" :key="image.key"></ImgComponent>
     </div>     
 </template>
 
 <script>
-import Pet from './Pet.vue'
+import ImgComponent from './ImgComponent.vue'
 
 export default {
   name: 'WelcomePage',
@@ -16,7 +17,14 @@ export default {
     sub_msg: String
   },
   components: {
-    Pet
+    ImgComponent
+  },
+  data: function() {
+    return {
+      images: [
+        { url: "jubjub_pet", id: 1 }
+      ]
+    }
   }
 }
 </script>
