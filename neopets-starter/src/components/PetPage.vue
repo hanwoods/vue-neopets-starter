@@ -1,10 +1,9 @@
 <template>
     <div>
-        <ImgComponent v-bind:file_name="pet_name"></ImgComponent>
+        <ImgComponent v-bind:file_name="pet_name" v-bind:img_id="pet_id"></ImgComponent>
         <div class="feed_block">
             <div>Feed your neopet!</div>
             <button> + </button>
-            <div class="divider"/>
             <button> - </button>
         </div>
     </div>
@@ -18,6 +17,10 @@
         props: {
             pet_name: {
                 type: String,
+                required: true
+            },
+            pet_id: {
+                type: Number,
                 required: true
             }
         },
@@ -36,12 +39,7 @@
 
 button {
     display:inline-block;
-}
-
-.divider{
-    width:5px;
-    height:auto;
-    display:inline-block;
+    margin-left: 10px;
 }
 </style>
 
