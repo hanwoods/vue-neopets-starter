@@ -21,3 +21,13 @@ export default {
     }
 }
 </script>
+
+<style>
+ .logs {
+    width: 8%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+ }
+</style>
+
