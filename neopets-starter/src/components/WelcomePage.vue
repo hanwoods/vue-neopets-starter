@@ -10,12 +10,12 @@
     </div>
 
     <div>
-      <PetPage v-if="selected_neopet" v-bind:pet_name="selected_neopet.name" v-bind:pet_id="selected_neopet.id"></PetPage>
+      <PetPage v-if="selected_neopet" v-bind:pet_height="selected_neopet.height" v-bind:pet_name="selected_neopet.name" v-bind:pet_id="selected_neopet.id"></PetPage>
       <template v-else>
         <h2>{{ sub_msg }}</h2>
         <div id="neopets">
           <!-- Note in v-for you need a key to bind to each element and we use v-bind to pass in the image.url -->
-          <ImgComponent v-for="pet in pets" v-bind:file_name="pet.name" v-bind:img_id="pet.id" v-bind:img_size="1" :key="pet.id" v-on:click.native="setSelectedNeopet(pet)"></ImgComponent>
+          <ImgComponent v-for="pet in pets" v-bind:file_name="pet.name" v-bind:img_id="pet.id" v-bind:img_size="pet.height" :key="pet.id" v-on:click.native="setSelectedNeopet(pet)"></ImgComponent>
         </div>
       </template>
     </div>
@@ -46,10 +46,10 @@ export default {
   data: function() {
     return {
       pets: [
-        { name: "acara", id: 1 },
-        { name: "aisha", id: 2 },
-        { name: "lenny", id: 3 },
-        { name: "kau", id: 4 },
+        { name: "acara", id: 1, height: 250},
+        { name: "aisha", id: 2, height: 250},
+        { name: "lenny", id: 3, height: 250},
+        { name: "kau", id: 4, height: 250},
       ],
       selected_neopet: ""
     }

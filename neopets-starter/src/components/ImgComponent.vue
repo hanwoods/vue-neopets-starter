@@ -2,7 +2,7 @@
     <!-- notice how we use v-bind here instead of just id="{{file_name}}", mustaches cannot be used inside of HTML attributes -->
     <div class="inline-img" v-bind:id="file_name">
         <!-- here we have to wrap the image url in a require, beacuse assests are not served in development mode -->
-        <img v-bind:alt="file_name" v-bind:ref="img_id" :src="require('../assets/'+file_name+'.png')" v-bind:style="{ height: imageHeight(img_size) + 'px'}">
+        <img v-bind:alt="file_name" v-bind:ref="img_id" :src="require('../assets/'+file_name+'.png')" v-bind:style="{ height: img_size + 'px'}">
     </div>
 </template>
 
@@ -15,20 +15,24 @@
                 type: Number,
                 required: true
             },
-            img_size: Number,
+            img_size: {
+                type: Number,
+                required: true
+            }
         },
-        methods : {
-            imageHeight: function (size) {
-                let id = this.img_id;
-                console.log(id);
-                console.log(this.$refs.id);
-                let image = this.$refs.id;
+        /*
+        watch : {
+            img_size: function () {
+                let ref_id = this.img_id;
+                let image = this.$refs[ref_id];
                 if(!image) return 0;
-                let height = image.clientHeight * img_size;
-                return height;
+                image.clientHeight = image.clientHeight * this.img_size;
+                image.clientWidth = image.clientWidth * this.img_size;
             }
         }
+        */
     }
+    
 </script>
 
 <style>

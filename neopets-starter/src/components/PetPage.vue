@@ -1,10 +1,11 @@
 <template>
     <div>
-        <ImgComponent v-bind:file_name="pet_name" v-bind:img_size="current_size" v-bind:img_id="pet_id"></ImgComponent>
+        <!-- Notice here how you can use v-bind: or the short hand : to bind data or props to html atributes -->
+        <ImgComponent v-bind:file_name="pet_name" :img_size="current_size" v-bind:img_id="pet_id"></ImgComponent>
         <div class="feed_block">
             <div>Feed your neopet!</div>
-            <button> + </button>
-            <button> - </button>
+            <button v-on:click="feedPet()"> + </button>
+            <button v-on:click="starvePet()"> - </button>
         </div>
     </div>
 </template>
@@ -22,14 +23,26 @@
             pet_id: {
                 type: Number,
                 required: true
+            },
+            pet_height: {
+                type: Number,
+                required: true
             }
         },
         components: {
             ImgComponent
         },
-        data: function() {
+        data: function () {
             return {
-                current_size: 1
+                current_size: 250
+            }
+        },
+        methods : {
+            feedPet: function() {
+                this.current_size += 20;
+            },
+            starvePet: function() {
+                this.current_size -= 20;
             }
         }
     }
