@@ -1,34 +1,51 @@
 <template>
   <div class="welcome_page">
     <h1>{{ header_msg }}</h1>
-    <h2>{{ sub_msg }}</h2>
-    <div id="neopets">
-      <!-- Note in v-for you need a key to bind to each element and we use v-bind to pass in the image.url -->
-      <ImgComponent v-for="image in images" v-bind:file_name="image.url" :key="image.key"></ImgComponent>
-    </div>
+    <PetPage v-if="selected_neopet" v-bind:pet_name="selected_neopet"></PetPage>
+    <template v-else>
+      <h2>{{ sub_msg }}</h2>
+      <div id="neopets">
+        <!-- Note in v-for you need a key to bind to each element and we use v-bind to pass in the image.url -->
+        <ImgComponent v-for="image in images" v-bind:file_name="image.name" :key="image.key" v-on:click.native="setSelectedNeopet(image.name)"></ImgComponent>
+      </div>
+    </template>
   </div>     
 </template>
 
 <script>
 import ImgComponent from './ImgComponent.vue'
+import PetPage from './PetPage.vue'
 
 export default {
   name: 'WelcomePage',
   props: {
-    header_msg: String,
-    sub_msg: String
+    header_msg: {
+      type: String,
+      required: true
+    },
+    sub_msg:  {
+      type: String,
+      requred: false
+    }
   },
   components: {
-    ImgComponent
+    ImgComponent,
+    PetPage
   },
   data: function() {
     return {
       images: [
-        { url: "acara", id: "1" },
-        { url: "aisha", id: "2" },
-        { url: "lenny", id: "3" },
-        { url: "kau", id: "4" },
-      ]
+        { name: "acara", id: "1" },
+        { name: "aisha", id: "2" },
+        { name: "lenny", id: "3" },
+        { name: "kau", id: "4" },
+      ],
+      selected_neopet: ""
+    }
+  },
+  methods: {
+    setSelectedNeopet(name) {
+      this.selected_neopet = name;
     }
   }
 }
