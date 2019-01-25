@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ImgComponent v-bind:file_name="pet_name"></ImgComponent>
+        <ImgComponent v-bind:file_name="pet_name" v-bind:img_size="current_size" v-bind:img_id="pet_id"></ImgComponent>
         <div class="feed_block">
             <div>Feed your neopet!</div>
             <button> + </button>
@@ -18,10 +18,19 @@
             pet_name: {
                 type: String,
                 required: true
+            },
+            pet_id: {
+                type: Number,
+                required: true
             }
         },
         components: {
             ImgComponent
+        },
+        data: function() {
+            return {
+                current_size: 1
+            }
         }
     }
 </script>
