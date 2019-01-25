@@ -1,14 +1,25 @@
 <template>
   <div class="welcome_page">
-    <h1>{{ header_msg }}</h1>
-    <PetPage v-if="selected_neopet" v-bind:pet_name="selected_neopet"></PetPage>
-    <template v-else>
-      <h2>{{ sub_msg }}</h2>
-      <div id="neopets">
-        <!-- Note in v-for you need a key to bind to each element and we use v-bind to pass in the image.url -->
-        <ImgComponent v-for="image in images" v-bind:file_name="image.name" :key="image.key" v-on:click.native="setSelectedNeopet(image.name)"></ImgComponent>
-      </div>
-    </template>
+    
+    <div>
+      <h1>{{ header_msg }}</h1>
+    </div>
+    
+    <div>
+      <button class="restart" v-on:click="clearNeopet()"> Reset </button>
+    </div>
+
+    <div>
+      <PetPage v-if="selected_neopet" v-bind:pet_name="selected_neopet"></PetPage>
+      <template v-else>
+        <h2>{{ sub_msg }}</h2>
+        <div id="neopets">
+          <!-- Note in v-for you need a key to bind to each element and we use v-bind to pass in the image.url -->
+          <ImgComponent v-for="image in images" v-bind:file_name="image.name" :key="image.key" v-on:click.native="setSelectedNeopet(image.name)"></ImgComponent>
+        </div>
+      </template>
+    </div>
+
   </div>     
 </template>
 
@@ -44,9 +55,20 @@ export default {
     }
   },
   methods: {
-    setSelectedNeopet(name) {
+    setSelectedNeopet: function (name) {
       this.selected_neopet = name;
+    },
+    clearNeopet: function () {
+      console.log('here');
+      this.selected_neopet = "";
     }
   }
 }
 </script>
+
+<style>
+ .restart {
+    float: left;
+    margin-left: 40px;
+ }
+</style>

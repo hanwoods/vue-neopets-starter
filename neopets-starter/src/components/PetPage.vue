@@ -4,7 +4,6 @@
         <div class="feed_block">
             <div>Feed your neopet!</div>
             <button> + </button>
-            <div class="divider"/>
             <button> - </button>
         </div>
     </div>
@@ -36,12 +35,7 @@
 
 button {
     display:inline-block;
-}
-
-.divider{
-    width:5px;
-    height:auto;
-    display:inline-block;
+    margin-left: 10px;
 }
 </style>
 
