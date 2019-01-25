@@ -20,17 +20,6 @@
                 required: true
             }
         },
-        /*
-        watch : {
-            img_size: function () {
-                let ref_id = this.img_id;
-                let image = this.$refs[ref_id];
-                if(!image) return 0;
-                image.clientHeight = image.clientHeight * this.img_size;
-                image.clientWidth = image.clientWidth * this.img_size;
-            }
-        }
-        */
     }
     
 </script>

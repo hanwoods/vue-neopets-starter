@@ -7,11 +7,13 @@
             <button v-on:click="feedPet()"> + </button>
             <button v-on:click="starvePet()"> - </button>
         </div>
+        <PetLog v-bind:name="pet_name" v-bind:logs="logs"></PetLog>
     </div>
 </template>
 
 <script>
     import ImgComponent from './ImgComponent.vue'
+    import PetLog from './PetLog.vue'
 
     export default {
         name:"PetPage",
@@ -23,25 +25,31 @@
             pet_id: {
                 type: Number,
                 required: true
-            },
-            pet_height: {
-                type: Number,
-                required: true
             }
         },
         components: {
-            ImgComponent
+            ImgComponent,
+            PetLog
         },
         data: function () {
             return {
-                current_size: 250
+                current_size: 250,
+                logs: []
             }
         },
         methods : {
             feedPet: function() {
+                this.logs.push({
+                    id: this.logs.length,
+                    message: "Pet fed!"
+                });
                 this.current_size += 20;
             },
             starvePet: function() {
+                this.logs.push({
+                    id: this.logs.length,
+                    message: "Pet starved!"
+                });
                 this.current_size -= 20;
             }
         }
